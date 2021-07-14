@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".newProductFragment">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <RelativeLayout
+           android:id="@+id/relativeLayout2"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           tools:ignore="MissingConstraints">
+
+           <LinearLayout
+               android:id="@+id/about_info_layout"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+               <ImageView
+                   android:id="@+id/about_image"
+                   android:layout_width="wrap_content"
+                   android:layout_height="95dp"
+                   android:layout_gravity="center"
+                   android:layout_marginTop="10dp"
+                   android:src="@drawable/fglogo" />
+
+               <!--           <ImageView-->
+               <!--               android:layout_width="wrap_content"-->
+               <!--               android:layout_height="96dp"-->
+               <!--               android:layout_marginStart="116dp"-->
+               <!--               android:layout_marginLeft="116dp"-->
+               <!--               android:layout_marginTop="10dp"-->
+               <!--               android:layout_marginEnd="148dp"-->
+               <!--               android:layout_marginRight="148dp"-->
+               <!--               app:srcCompat="@drawable/fglogo" />-->
+
+               <TextView
+                   android:id="@+id/about_content"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="25dp"
+                   android:layout_marginLeft="25dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="25dp"
+                   android:layout_marginRight="25dp"
+                   android:gravity="center_horizontal"
+                   android:fontFamily="@font/alice"
+                   android:text="The FISH GARAGE recognizes itself as a restaurant with a well curated culinary experience which thrives on exploring flavours that have been mastered over the years.  An establishment founded by 5 techies with a zest for culinary skills, Fish garage has been a game changer in serving an array of curated sea food delicacies for pocket-friendly prices. With the utmost importance given to the fish and other ingredients sourced locally, the wholesome food served here is healthy and of high nutritional value. Located in the heart of the city at Urwa-chilimbi, the 350 Sqft eatery can accommodate 24 people who are served by well-trained staff."
+                   android:textAlignment="center"
+                   android:textColor="@color/black"
+                   android:textSize="14sp"
+                   android:textStyle="bold" />
+
+
+               <com.smarteist.autoimageslider.SliderView
+                   android:id="@+id/image_slider"
+                   android:layout_width="match_parent"
+                   android:layout_height="250dp"
+                   android:layout_margin="20dp"
+                   app:sliderAnimationDuration="600"
+                   app:sliderAutoCycleDirection="back_and_forth"
+                   app:sliderAutoCycleEnabled="true"
+                   app:sliderIndicatorGravity="center_horizontal|bottom"
+                   app:sliderIndicatorMargin="15dp"
+                   app:sliderIndicatorOrientation="horizontal"
+                   app:sliderIndicatorPadding="3dp"
+                   app:sliderIndicatorRadius="2dp"
+                   app:sliderIndicatorSelectedColor="#5A5A5A"
+                   app:sliderIndicatorUnselectedColor="#fff"
+                   app:sliderStartAutoCycle="true" />
+
+           </LinearLayout>
+
+       </RelativeLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
+           tools:ignore="MissingConstraints">
+
+
+           <TextView
+               android:id="@+id/Contact_head"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="20dp"
+               android:layout_marginLeft="20dp"
+               android:layout_marginTop="3dp"
+               android:layout_marginEnd="20dp"
+               android:layout_marginRight="20dp"
+               android:gravity="center_horizontal"
+               android:fontFamily="@font/alice"
+               android:text="Contact Details"
+               android:textAlignment="center"
+               android:textColor="@color/black"
+               android:textSize="20sp"
+               android:textStyle="bold|italic" />
+
+           <TextView
+               android:id="@+id/textView2"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="40dp"
+               android:layout_marginTop="5dp"
+               android:layout_marginRight="40dp"
+               android:gravity="center_horizontal"
+               android:fontFamily="@font/alice"
+               android:text="Phone: 090364 47417"
+               android:textAlignment="center"
+               android:textColor="@color/black"
+               android:textSize="18sp" />
+
+
+
+           <TextView
+               android:id="@+id/textView4"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="40dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginRight="40dp"
+               android:gravity="center_horizontal"
+               android:fontFamily="@font/alice"
+               android:text="Address: Kulur Ferry Rd, opp. Wines and Spirits, Chilimbi, Urwa, Mangalore, Karnataka 575006"
+               android:textAlignment="center"
+               android:textColor="@color/black"
+               android:textSize="18sp" />
+
+
+       </LinearLayout>
+
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
