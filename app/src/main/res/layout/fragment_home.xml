@@ -29,18 +29,27 @@
 <!--            android:layout_height="wrap_content"-->
 <!--            android:orientation="horizontal"-->
 <!--            android:weightSum="2">-->
-<!--            <EditText-->
-<!--                android:id="@+id/search_box"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:background="@drawable/search_gb"-->
-<!--                android:drawableLeft="@drawable/ic_baseline_search_24"-->
-<!--                android:drawablePadding="5dp"-->
-<!--                android:elevation="3dp"-->
-<!--                android:hint="Search Your Dish Here.."-->
-<!--                android:padding="13dp"-->
-<!--                android:layout_weight="1"/>-->
+            <EditText
+                android:id="@+id/search_box1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/search_gb"
+                android:drawableLeft="@drawable/ic_baseline_search_24"
+                android:drawablePadding="5dp"
+                android:elevation="3dp"
+                android:hint="Search Your Dish Here.."
+                android:padding="13dp"
+                android:layout_weight="1"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/search_rec"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+
+
 <!--            <ImageView-->
 <!--                android:id="@+id/search_btn"-->
 <!--                android:layout_width="45dp"-->

@@ -3,6 +3,7 @@ package com.example.myfg.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class AddAddressActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +58,9 @@ public class AddAddressActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.ad_phone);
         postalCode = findViewById(R.id.ad_code);
         addAddressBtn = findViewById(R.id.ad_add_address);
+
+
+
 
         addAddressBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -68,6 +68,8 @@ public class MyCartsFragment extends Fragment {
 
     Button buy_Now, add_address, dineIn, addSlot;
     int size;
+    boolean value=false;
+    boolean value1=false;
 
     ProgressBar progressBar;
 
@@ -115,12 +117,17 @@ public class MyCartsFragment extends Fragment {
 
 
         recyclerView.setAdapter(cartAdapter);
+         buy_Now.setEnabled(value);
+         dineIn.setEnabled(value1);
 
         add_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), AddAddressActivity.class);
+                value=true;
+                buy_Now.setEnabled(value);
                 startActivity(intent);
+
 //                r1.setVisibility(View.VISIBLE);
 //                r2.setVisibility(View.GONE);
             }
@@ -130,9 +137,13 @@ public class MyCartsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), AddTimingActivity.class);
+                value1=true;
+                dineIn.setEnabled(value1);
+
                 startActivity(intent);
 //                r1.setVisibility(View.VISIBLE);
 //                r2.setVisibility(View.GONE);
+
             }
         });
 
@@ -155,6 +166,7 @@ public class MyCartsFragment extends Fragment {
                 Intent intent = new Intent(getContext(), DineInActivity.class);
                 intent.putExtra("itemList", (Serializable) cartModelList);
                 deletecart();
+
                 startActivity(intent);
                 r1.setVisibility(View.VISIBLE);
                 r2.setVisibility(View.GONE);
@@ -203,15 +215,12 @@ public class MyCartsFragment extends Fragment {
     }
 
 
-    private void sendData(View view) {
-        Intent intent = new Intent(getContext(), PaymentActivity.class);
-        intent.putExtra("itemList", (Serializable) cartModelList);
-        deletecart();
-    }
 
 
     private void deletecart() {
         int position = 0;
+        cartModelList.clear();
+        cartAdapter.notifyDataSetChanged();
 
         db.collection("CurrentUser").document(auth.getCurrentUser().getUid())
                 .collection("AddToCart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -219,10 +228,12 @@ public class MyCartsFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot snapshot : task.getResult()) {
                     db.collection("AddToCart").document(snapshot.getId()).delete();
+                    cartModelList.clear();
                 }
             }
         });
     }
+
 
     public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override

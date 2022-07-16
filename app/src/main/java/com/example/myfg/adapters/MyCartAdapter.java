@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,6 +79,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             }
         });
 
+
         //pass total amount to My Cart Fragment
         totalPrice = totalPrice + cartModelList.get(position).getTotalPrice();
         Intent intent = new Intent("MyTotalAmount");
@@ -95,6 +97,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
         TextView name, price, date, time, quantity, totalPrice;
         ImageView deleteItem;
+//        Button buy_Now;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -107,6 +110,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             totalPrice = itemView.findViewById(R.id.total_price);
 
             deleteItem = itemView.findViewById(R.id.delete);
+//            buy_Now = itemView.findViewById(R.id.buy_now);
 
         }
     }

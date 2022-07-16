@@ -2,6 +2,8 @@ package com.example.myfg.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,13 +60,17 @@ public class HomeFragment extends Fragment {
     RecyclerView popularRec, homeCatRec, recommendedRec;
     FirebaseFirestore db;
 
-    List<ViewAllModel> viewAllModelList;
-    RecyclerView recyclerView;
-    ViewAllAdapter viewAllAdapter;
+
 
     //populer items
     List<PopularModel> popularModelList;
     PopularAdapter popularAdapter;
+
+    //serch view
+    EditText search_box;
+    private List<ViewAllModel> viewAllModelList;
+    private  RecyclerView recyclerViewSearch;
+    private ViewAllAdapter viewAllAdapter;
 
     //cat items
     List<HomeCategory> categoryList;
@@ -114,35 +120,7 @@ public class HomeFragment extends Fragment {
         progressBar.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
 
-        //search
-//        recyclerView = root.findViewById(R.id.search_recycle);
-//        recyclerView.setVisibility(View.GONE);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//
-//        viewAllModelList = new ArrayList<>();
-//        viewAllAdapter = new ViewAllAdapter(getContext(), viewAllModelList);
-//        recyclerView.setAdapter(viewAllAdapter);
 
-        //popular
-//        viewAllModelList = new ArrayList<>();
-//        viewAllAdapter = new ViewAllAdapter(getActivity(), viewAllModelList);
-//        popularRec.setAdapter(viewAllAdapter);
-
-
-//        if (type != null && type.equalsIgnoreCase("Green Masala")) {
-//            firestore.collection("AllProducts").whereEqualTo("type", "Green Masala").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                    for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
-//                        ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
-//                        viewAllModelList.add(viewAllModel);
-//                        viewAllAdapter.notifyDataSetChanged();
-//                        progressBar.setVisibility(View.GONE);
-//                        recyclerView.setVisibility(View.VISIBLE);
-//                    }
-//                }
-//            });
-//        }
 
         //popular item
         popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -217,20 +195,57 @@ public class HomeFragment extends Fragment {
                 });
 
         //search
-//        search_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                           firebaseItemSearch();
-//            }
-//        });
+        recyclerViewSearch= root.findViewById(R.id.search_rec);
+        search_box = root.findViewById(R.id.search_box1);
+        viewAllModelList = new ArrayList<>();
+        viewAllAdapter = new ViewAllAdapter(getContext(),viewAllModelList);
+        recyclerViewSearch.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewSearch.setAdapter(viewAllAdapter);
+        recyclerViewSearch.setHasFixedSize(true);
+        search_box.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().isEmpty()){
+                    viewAllModelList.clear();
+                    viewAllAdapter.notifyDataSetChanged();
+                }else {
+                    searchProduct(s.toString());
+                }
+            }
+        });
 
         return root;
     }
 
+    private void searchProduct(String type) {
 
-//    private void firebaseItemSearch() {
-//
-//
-//    }
+        if(!type.isEmpty()){
+            db.collection("AllProducts").whereEqualTo("type",type).get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()&& task.getResult() != null){
+                                viewAllModelList.clear();
+                                viewAllAdapter.notifyDataSetChanged();
+                                for (DocumentSnapshot doc: task.getResult().getDocuments()){
+                                    ViewAllModel viewAllModel = doc.toObject(ViewAllModel.class);
+                                    viewAllModelList.add(viewAllModel);
+                                    viewAllAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        }
+                    });
+        }
+
+    }
 }
